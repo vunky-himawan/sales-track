@@ -1,0 +1,94 @@
+@startuml
+
+title ERD
+
+entity Roles {
+    *role_id : VARCHAR(50)
+    --
+    *role_name : VARCHAR(50)
+    + created_at : DATETIME
+    + updated_at : DATETIME
+}
+
+entity Users {
+    + user_id : VARCHAR(50)
+    + employee_id : VARCHAR(50)
+    + role_id : VARCHAR(50)
+    --
+    + username: VARCHAR(255)
+    + password : VARCHAR(255)
+    + created_at : DATETIME
+    + updated_at : DATETIME
+}
+
+entity Employees {
+    + employee_id : VARCHAR(50)
+    + position_id : VARCHAR(50)
+    --
+    + name : VARCHAR(255)
+    + phone_number : VARCHAR(255)
+    + email : VARCHAR(255)
+    + address : VARCHAR(255)
+    + created_at : DATETIME
+    + updated_at : DATETIME
+}
+
+entity Positions {
+    + position_id : VARCHAR(50)
+    --
+    + position_name : VARCHAR(50)
+    + created_at : DATETIME
+    + updated_at : DATETIME
+}
+
+entity Sales {
+    + sales_id : VARCHAR(50)
+    + employee_id : VARCHAR(50)
+    --
+    + customer_name : VARCHAR(255)
+    + product_total : INTEGER
+    + total_price : INTEGER
+    + created_at : DATETIME
+    + updated_at : DATETIME
+}
+
+entity SalesDetails {
+    + sales_detail_id : VARCHAR(50)
+    + sales_id : VARCHAR(50)
+    + product_id : VARCHAR(50)
+    --
+    + quantity : INTEGER
+    + price : INTEGER
+    + subtotal : INTEGER
+    + created_at : DATETIME
+    + updated_at : DATETIME
+}
+
+entity Products {
+    + product_id : VARCHAR(50)
+    + category_id : VARCHAR(50)
+    --
+    + product_name : VARCHAR(50)
+    + price : INTEGER
+    + stock : INTEGER
+    + created_at : DATETIME
+    + updated_at : DATETIME
+}
+
+entity Categories {
+    + category_id : VARCHAR(50)
+    --
+    + category_name : VARCHAR(50)
+    + created_at : DATETIME
+    + updated_at : DATETIME
+}
+
+Roles ||-l-|{Users
+Users ||--||Employees
+Employees}|-l-||Positions
+Employees ||-r-|{Sales
+Products ||-l-|{Categories
+Sales ||--|{SalesDetails
+SalesDetails}|-l-||Products
+
+@enduml

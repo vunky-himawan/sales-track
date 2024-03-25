@@ -1,0 +1,33 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Employees",
+        "description": "Employees",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000"
+        }
+    ],
+    "paths": {
+        "/api/employees/": {
+            "get": {
+                "description": "Get All Employees"
+            }
+        },
+        "/api/employees": {
+            "post": {
+                "description": "Create New Employee"
+            }
+        },
+        "/api/employees/{id}": {
+            "put": {
+                "description": "Update Employee"
+            },
+            "get": {
+                "description": "Get Employee"
+            }
+        }
+    }
+}

@@ -1,0 +1,352 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Accounts",
+        "description": "Accounts",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000"
+        }
+    ],
+    "paths": {
+        "/api/accounts": {
+            "get": {
+                "tags": ["Account"],
+                "summary": "Get All Accounts",
+                "description": "Get All Accounts",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "Order By",
+                        "in": "query",
+                        "description": "Order By",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get all users",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "success": {
+                                        "description": "Success get all users",
+                                        "value": {
+                                            "data": [
+                                                {
+                                                    "id": "1",
+                                                    "username": "budi",
+                                                    "employee_id": "EMP1",
+                                                    "employee_name": "Budi"
+                                                },
+                                                {
+                                                    "id": "2",
+                                                    "username": "joni",
+                                                    "employee_id": "EMP2",
+                                                    "employee_name": "Joni"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "username": {
+                                                        "type": "string"
+                                                    },
+                                                    "employee_id": {
+                                                        "type": "string"
+                                                    },
+                                                    "employee_name": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Account"],
+                "summary": "Create new account",
+                "description": "Create New Account",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "examples": {
+                                "budi": {
+                                    "description": "Register user Budi",
+                                    "value": {
+                                        "username": "budi",
+                                        "password": "12345",
+                                        "employee_id": "EMP1",
+                                        "role_id": 1
+                                    }
+                                }
+                            },
+                            "schema": {
+                                "required": [
+                                    "username",
+                                    "password",
+                                    "name",
+                                    "role_id",
+                                    "employee_id"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "role_id": {
+                                        "type": "integer"
+                                    },
+                                    "employee_id": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success register user",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "success": {
+                                        "description": "Success register user",
+                                        "value": {
+                                            "data": {
+                                                "id": "1",
+                                                "username": "budi",
+                                                "employee_id": "EMP1",
+                                                "role_id": 0
+                                            }
+                                        }
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "username": {
+                                                    "type": "string"
+                                                },
+                                                "employee_id": {
+                                                    "type": "string"
+                                                },
+                                                "role_id": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "validation error": {
+                                        "description": "Validation Error",
+                                        "value": {
+                                            "errors": {
+                                                "username": [
+                                                    "The username field is required.",
+                                                    "The username must be a string."
+                                                ],
+                                                "password": [
+                                                    "The password field is required.",
+                                                    "The password minimum length is 12."
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/accounts/{id}": {
+            "get": {
+                "tags": ["Account"],
+                "description": "Get Detail Account",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get detail user",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "success": {
+                                        "description": "Success get detail user",
+                                        "value": {
+                                            "data": {
+                                                "id": "1",
+                                                "username": "budi",
+                                                "employee_id": "EMP1",
+                                                "employee_name": "Budi",
+                                                "role_name": "admin"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Account"],
+                "description": "Update Account",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update Current User",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "employee_id": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "role_id": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success update current user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "username": {
+                                                    "type": "string"
+                                                },
+                                                "employee_name": {
+                                                    "type": "string"
+                                                },
+                                                "role_id": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Account"],
+                "description": "Delete Account",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success delete current user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
