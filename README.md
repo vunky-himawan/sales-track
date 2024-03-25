@@ -10,10 +10,16 @@ Sales Track adalah aplikasi manajemen penjualan yang memungkinkan admin (owner) 
 2. **Dashboard**: The dashboard view displays a summary of sales statistics, such as total monthly sales, top sales, etc.
 3. **Sales Management**:
     - **Add Sales Data**: Admins and employees can add new sales data, including information such as sales date, products sold, quantity, and price.
+    - **Edit Sales Data**: Admins can edit existing sales data, including information such as sales date, products sold, quantity, and price.
+    - **Delete Sales Data**: Admins can delete sales data.
     - **View Sales List**: Admins and employees can view a list of all sales data that has been entered. Admins have the option to edit and delete sales data, while employees can only view the data.
 4. **Data Visualization**:
-    - **Monthly Sales Graph**: The visualization graph displays monthly sales trends in the form of a line graph or bar graph, making it easy to see the progress of sales over time.
+    - **Monthly and Yearly Sales Graph**: The visualization graph displays monthly and yearly sales trends in the form of a line graph or bar graph, making it easy to see the progress of sales over time.
+    - **Top Products Chart**: This graph displays the top selling products, helping admins and employees to see which products are most popular.
+    - **Lowest Stock Products Chart**: This graph displays the lowest selling products, helping admins and employees to see which products are least popular.
     - **Sold Products Chart**: This graph displays the percentage of products sold, helping admins and employees to see which products customers are most interested in.
+    - **Customers Chart**: This graph displays the percentage of customers who have purchased products, helping admins and employees to see which customers are most active.
+    - **Sales Report**: The sales report displays a summary of sales data, such as total sales, top selling products, etc.
 5. **Search and Filter**: Admins and employees can search for sales data based on certain criteria, such as dates or specific products, as well as apply filters to customize the data display.
 6. **Responsive and User Friendly**: The user interface is designed to be responsive and easy to use, both on desktop and mobile devices.
 
@@ -44,10 +50,17 @@ git clone https://github.com/vunky-himawan/sales-dashboard.git
 cd sales-dashboard
 ```
 
-3. Install dependencies using Composer:
+3. Install dependencies:
 
 ```bash
+# Install PHP dependencies using Composer
 composer install
+
+# Install Javascript dependencies using npm
+npm install
+
+# Compile assets
+npm run dev
 ```
 
 4. Copy the .env.example file to .env:
