@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.3",
     "info": {
-        "title": "Employees",
-        "description": "Employees",
+        "title": "Positions",
+        "description": "Positions",
         "version": "1.0.0"
     },
     "servers": [
@@ -11,11 +11,11 @@
         }
     ],
     "paths": {
-        "/api/employees": {
+        "/api/positions": {
             "get": {
-                "tags": ["Employees"],
-                "summary": "Get All Employees",
-                "description": "Get All Employees",
+                "tags": ["Positions"],
+                "summary": "Get all Positions",
+                "description": "Get all Positions",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -30,65 +30,25 @@
                         }
                     },
                     {
-                        "name": "Name",
+                        "name": "Positions",
                         "in": "query",
-                        "description": "Name",
+                        "description": "Positions",
                         "schema": {
                             "type": "string"
                         }
                     },
                     {
-                        "name": "Position",
+                        "name": "Code",
                         "in": "query",
-                        "description": "Position",
+                        "description": "Code",
                         "schema": {
                             "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Email",
-                        "in": "query",
-                        "description": "Email",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Phone",
-                        "in": "query",
-                        "description": "Phone",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Address",
-                        "in": "query",
-                        "description": "Address",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Page",
-                        "in": "query",
-                        "description": "Page",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "Size",
-                        "in": "query",
-                        "description": "Size",
-                        "schema": {
-                            "type": "integer"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success get all employees",
+                        "description": "Success get all positions",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -99,22 +59,13 @@
                                             "items": {
                                                 "type": "object",
                                                 "properties": {
-                                                    "employee_id": {
+                                                    "position_id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "position_code": {
                                                         "type": "string"
                                                     },
-                                                    "name": {
-                                                        "type": "string"
-                                                    },
-                                                    "email": {
-                                                        "type": "string"
-                                                    },
-                                                    "phone": {
-                                                        "type": "string"
-                                                    },
-                                                    "position": {
-                                                        "type": "string"
-                                                    },
-                                                    "address": {
+                                                    "position_name": {
                                                         "type": "string"
                                                     },
                                                     "created_at": {
@@ -128,17 +79,6 @@
                                         },
                                         "errors": {
                                             "type": "object"
-                                        },
-                                        "meta": {
-                                            "type": "object",
-                                            "properties": {
-                                                "page": {
-                                                    "type": "integer"
-                                                },
-                                                "size": {
-                                                    "type": "integer"
-                                                }
-                                            }
                                         }
                                     }
                                 }
@@ -148,9 +88,9 @@
                 }
             },
             "post": {
-                "tags": ["Employees"],
-                "summary": "Create new employee",
-                "description": "Create New employee",
+                "tags": ["Positions"],
+                "summary": "Create new position",
+                "description": "Create new position",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -162,14 +102,11 @@
                         "application/json": {
                             "examples": {
                                 "budi": {
-                                    "description": "Register employee Budi",
+                                    "description": "Create Manager Position",
                                     "value": {
-                                        "employee_id": "EMP1",
-                                        "name": "Budi Gunawan",
                                         "position_id": 1,
-                                        "phone_number": "08123456789",
-                                        "address": "Jl. Raya No. 1",
-                                        "email": "budi@gg.com",
+                                        "position_code": "MNG",
+                                        "position_name": "Manager",
                                         "created_at": "2021-05-05T07:00:00.000Z",
                                         "updated_at": "2021-05-05T07:00:00.000Z"
                                     }
@@ -177,32 +114,21 @@
                             },
                             "schema": {
                                 "required": [
-                                    "name",
                                     "position_id",
-                                    "phone_number",
-                                    "address",
-                                    "email",
+                                    "position_code",
+                                    "position_name",
                                     "created_at",
                                     "updated_at"
                                 ],
                                 "type": "object",
                                 "properties": {
-                                    "employee_id": {
-                                        "type": "string"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    },
                                     "position_id": {
                                         "type": "integer"
                                     },
-                                    "phone_number": {
+                                    "position_code": {
                                         "type": "string"
                                     },
-                                    "address": {
-                                        "type": "string"
-                                    },
-                                    "email": {
+                                    "position_name": {
                                         "type": "string"
                                     },
                                     "created_at": {
@@ -218,20 +144,17 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Success register employee",
+                        "description": "Success create new position",
                         "content": {
                             "application/json": {
                                 "examples": {
                                     "success": {
-                                        "description": "Success register employee",
+                                        "description": "Success create new position",
                                         "value": {
                                             "data": {
-                                                "employee_id": "EMP1",
-                                                "name": "Budi Gunawan",
-                                                "email": "budi@gg.com",
-                                                "phone": "08123456789",
-                                                "position": "Manager",
-                                                "address": "Jl. Raya No. 1",
+                                                "position_id": 1,
+                                                "position_code": "MNG",
+                                                "position_name": "Manager",
                                                 "created_at": "2021-05-05T07:00:00.000Z",
                                                 "updated_at": "2021-05-05T07:00:00.000Z"
                                             }
@@ -244,22 +167,13 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "employee_id": {
+                                                "position_id": {
+                                                    "type": "integer"
+                                                },
+                                                "position_code": {
                                                     "type": "string"
                                                 },
-                                                "name": {
-                                                    "type": "string"
-                                                },
-                                                "email": {
-                                                    "type": "string"
-                                                },
-                                                "phone": {
-                                                    "type": "string"
-                                                },
-                                                "position": {
-                                                    "type": "string"
-                                                },
-                                                "address": {
+                                                "position_name": {
                                                     "type": "string"
                                                 },
                                                 "created_at": {
@@ -287,12 +201,14 @@
                                         "description": "Validation Error",
                                         "value": {
                                             "errors": {
-                                                "name": [
-                                                    "The name field is required.",
-                                                    "The name must be a string."
+                                                "position_id": [
+                                                    "The role id field is required."
                                                 ],
-                                                "email": [
-                                                    "The email field is required."
+                                                "position_code": [
+                                                    "The role code field is required."
+                                                ],
+                                                "position_name": [
+                                                    "The role code field is required."
                                                 ]
                                             }
                                         }
@@ -304,11 +220,11 @@
                 }
             }
         },
-        "/api/employees/{id}": {
+        "/api/positions/{id}": {
             "get": {
-                "tags": ["Employees"],
-                "summary": "Get employee",
-                "description": "Get employee",
+                "tags": ["Positions"],
+                "summary": "Get position",
+                "description": "Get position",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -322,7 +238,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success get employee",
+                        "description": "Success get position",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -332,22 +248,13 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "employee_id": {
+                                                "position_id": {
+                                                    "type": "integer"
+                                                },
+                                                "position_code": {
                                                     "type": "string"
                                                 },
-                                                "name": {
-                                                    "type": "string"
-                                                },
-                                                "email": {
-                                                    "type": "string"
-                                                },
-                                                "phone": {
-                                                    "type": "string"
-                                                },
-                                                "position": {
-                                                    "type": "string"
-                                                },
-                                                "address": {
+                                                "position_name": {
                                                     "type": "string"
                                                 },
                                                 "created_at": {
@@ -358,7 +265,9 @@
                                                 }
                                             }
                                         },
-                                        "errors": {}
+                                        "errors": {
+                                            "type": "object"
+                                        }
                                     }
                                 }
                             }
@@ -367,9 +276,9 @@
                 }
             },
             "put": {
-                "tags": ["Employees"],
-                "summary": "Update employee",
-                "description": "Update employee",
+                "tags": ["Positions"],
+                "summary": "Update position",
+                "description": "Update position",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -382,28 +291,29 @@
                     }
                 ],
                 "requestBody": {
-                    "description": "Update employee",
+                    "description": "Update position name",
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "object",
+                                "required": [
+                                    "position_id",
+                                    "position_code",
+                                    "position_name",
+                                    "created_at",
+                                    "updated_at"
+                                ],
                                 "properties": {
-                                    "employee_id": {
-                                        "type": "string"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "email": {
-                                        "type": "string"
-                                    },
-                                    "phone": {
-                                        "type": "string"
-                                    },
                                     "position_id": {
                                         "type": "integer"
                                     },
-                                    "address": {
+                                    "position_code": {
+                                        "type": "string"
+                                    },
+                                    "position_name": {
+                                        "type": "string"
+                                    },
+                                    "created_at": {
                                         "type": "string"
                                     },
                                     "updated_at": {
@@ -416,32 +326,22 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Success edit employee",
+                        "description": "Success update position name",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
-                                    "required": ["data"],
                                     "properties": {
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "employee_id": {
+                                                "position_id": {
+                                                    "type": "integer"
+                                                },
+                                                "position_code": {
                                                     "type": "string"
                                                 },
-                                                "name": {
-                                                    "type": "string"
-                                                },
-                                                "email": {
-                                                    "type": "string"
-                                                },
-                                                "phone": {
-                                                    "type": "string"
-                                                },
-                                                "position": {
-                                                    "type": "string"
-                                                },
-                                                "address": {
+                                                "position_name": {
                                                     "type": "string"
                                                 },
                                                 "created_at": {
@@ -452,7 +352,9 @@
                                                 }
                                             }
                                         },
-                                        "errors": {}
+                                        "errors": {
+                                            "type": "object"
+                                        }
                                     }
                                 }
                             }
@@ -461,9 +363,9 @@
                 }
             },
             "delete": {
-                "tags": ["Employees"],
-                "summary": "Delete employee",
-                "description": "Delete employee",
+                "tags": ["Positions"],
+                "summary": "Delete position",
+                "description": "Delete position",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -477,7 +379,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success delete employee",
+                        "description": "Success delete position",
                         "content": {
                             "application/json": {
                                 "schema": {

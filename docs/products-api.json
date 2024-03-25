@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.3",
     "info": {
-        "title": "Employees",
-        "description": "Employees",
+        "title": "Products",
+        "description": "Products",
         "version": "1.0.0"
     },
     "servers": [
@@ -11,11 +11,11 @@
         }
     ],
     "paths": {
-        "/api/employees": {
+        "/api/products": {
             "get": {
-                "tags": ["Employees"],
-                "summary": "Get All Employees",
-                "description": "Get All Employees",
+                "tags": ["Products"],
+                "summary": "Get all products",
+                "description": "Get all products",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -38,33 +38,25 @@
                         }
                     },
                     {
-                        "name": "Position",
+                        "name": "Category",
                         "in": "query",
-                        "description": "Position",
+                        "description": "Category",
                         "schema": {
                             "type": "string"
                         }
                     },
                     {
-                        "name": "Email",
+                        "name": "Price",
                         "in": "query",
-                        "description": "Email",
+                        "description": "Price",
                         "schema": {
                             "type": "string"
                         }
                     },
                     {
-                        "name": "Phone",
+                        "name": "Stock",
                         "in": "query",
-                        "description": "Phone",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Address",
-                        "in": "query",
-                        "description": "Address",
+                        "description": "Stock",
                         "schema": {
                             "type": "string"
                         }
@@ -88,7 +80,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success get all employees",
+                        "description": "Success get all products",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -99,22 +91,19 @@
                                             "items": {
                                                 "type": "object",
                                                 "properties": {
-                                                    "employee_id": {
+                                                    "product_id": {
                                                         "type": "string"
                                                     },
-                                                    "name": {
+                                                    "category_name": {
                                                         "type": "string"
                                                     },
-                                                    "email": {
+                                                    "product_name": {
                                                         "type": "string"
                                                     },
-                                                    "phone": {
+                                                    "price": {
                                                         "type": "string"
                                                     },
-                                                    "position": {
-                                                        "type": "string"
-                                                    },
-                                                    "address": {
+                                                    "stock": {
                                                         "type": "string"
                                                     },
                                                     "created_at": {
@@ -148,9 +137,9 @@
                 }
             },
             "post": {
-                "tags": ["Employees"],
-                "summary": "Create new employee",
-                "description": "Create New employee",
+                "tags": ["Products"],
+                "summary": "Create new product",
+                "description": "Create new product",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -162,14 +151,13 @@
                         "application/json": {
                             "examples": {
                                 "budi": {
-                                    "description": "Register employee Budi",
+                                    "description": "Create new product",
                                     "value": {
-                                        "employee_id": "EMP1",
-                                        "name": "Budi Gunawan",
-                                        "position_id": 1,
-                                        "phone_number": "08123456789",
-                                        "address": "Jl. Raya No. 1",
-                                        "email": "budi@gg.com",
+                                        "product_id": "PROD1",
+                                        "category_id": 1,
+                                        "product_name": "Sambel",
+                                        "price": 10000,
+                                        "stock": 10,
                                         "created_at": "2021-05-05T07:00:00.000Z",
                                         "updated_at": "2021-05-05T07:00:00.000Z"
                                     }
@@ -177,33 +165,30 @@
                             },
                             "schema": {
                                 "required": [
-                                    "name",
-                                    "position_id",
-                                    "phone_number",
-                                    "address",
-                                    "email",
+                                    "product_id",
+                                    "category_id",
+                                    "product_name",
+                                    "price",
+                                    "stock",
                                     "created_at",
                                     "updated_at"
                                 ],
                                 "type": "object",
                                 "properties": {
-                                    "employee_id": {
+                                    "product_id": {
                                         "type": "string"
                                     },
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "position_id": {
+                                    "category_id": {
                                         "type": "integer"
                                     },
-                                    "phone_number": {
+                                    "product_name": {
                                         "type": "string"
                                     },
-                                    "address": {
-                                        "type": "string"
+                                    "price": {
+                                        "type": "integer"
                                     },
-                                    "email": {
-                                        "type": "string"
+                                    "stock": {
+                                        "type": "integer"
                                     },
                                     "created_at": {
                                         "type": "string"
@@ -218,20 +203,19 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Success register employee",
+                        "description": "Success create new product",
                         "content": {
                             "application/json": {
                                 "examples": {
                                     "success": {
-                                        "description": "Success register employee",
+                                        "description": "Success create new product",
                                         "value": {
                                             "data": {
-                                                "employee_id": "EMP1",
-                                                "name": "Budi Gunawan",
-                                                "email": "budi@gg.com",
-                                                "phone": "08123456789",
-                                                "position": "Manager",
-                                                "address": "Jl. Raya No. 1",
+                                                "product_id": "PROD1",
+                                                "category_name": "Makanan",
+                                                "product_name": "Sambel",
+                                                "price": 10000,
+                                                "stock": 10,
                                                 "created_at": "2021-05-05T07:00:00.000Z",
                                                 "updated_at": "2021-05-05T07:00:00.000Z"
                                             }
@@ -244,23 +228,20 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "employee_id": {
+                                                "product_id": {
                                                     "type": "string"
                                                 },
-                                                "name": {
+                                                "category_name": {
                                                     "type": "string"
                                                 },
-                                                "email": {
+                                                "product_name": {
                                                     "type": "string"
                                                 },
-                                                "phone": {
-                                                    "type": "string"
+                                                "price": {
+                                                    "type": "integer"
                                                 },
-                                                "position": {
-                                                    "type": "string"
-                                                },
-                                                "address": {
-                                                    "type": "string"
+                                                "stock": {
+                                                    "type": "integer"
                                                 },
                                                 "created_at": {
                                                     "type": "string"
@@ -287,12 +268,20 @@
                                         "description": "Validation Error",
                                         "value": {
                                             "errors": {
-                                                "name": [
-                                                    "The name field is required.",
-                                                    "The name must be a string."
+                                                "product_id": [
+                                                    "The product id field is required."
                                                 ],
-                                                "email": [
-                                                    "The email field is required."
+                                                "category_id": [
+                                                    "The category id field is required."
+                                                ],
+                                                "product_name": [
+                                                    "The product name field is required."
+                                                ],
+                                                "price": [
+                                                    "The price field is required."
+                                                ],
+                                                "stock": [
+                                                    "The stock field is required."
                                                 ]
                                             }
                                         }
@@ -304,11 +293,11 @@
                 }
             }
         },
-        "/api/employees/{id}": {
+        "/api/products/{id}": {
             "get": {
-                "tags": ["Employees"],
-                "summary": "Get employee",
-                "description": "Get employee",
+                "tags": ["Products"],
+                "summary": "Get product",
+                "description": "Get product",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -322,7 +311,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success get employee",
+                        "description": "Success get product",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -332,23 +321,20 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "employee_id": {
+                                                "product_id": {
                                                     "type": "string"
                                                 },
-                                                "name": {
+                                                "category_name": {
                                                     "type": "string"
                                                 },
-                                                "email": {
+                                                "product_name": {
                                                     "type": "string"
                                                 },
-                                                "phone": {
-                                                    "type": "string"
+                                                "price": {
+                                                    "type": "integer"
                                                 },
-                                                "position": {
-                                                    "type": "string"
-                                                },
-                                                "address": {
-                                                    "type": "string"
+                                                "stock": {
+                                                    "type": "integer"
                                                 },
                                                 "created_at": {
                                                     "type": "string"
@@ -367,9 +353,9 @@
                 }
             },
             "put": {
-                "tags": ["Employees"],
-                "summary": "Update employee",
-                "description": "Update employee",
+                "tags": ["Products"],
+                "summary": "Update product",
+                "description": "Update product",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -382,28 +368,28 @@
                     }
                 ],
                 "requestBody": {
-                    "description": "Update employee",
+                    "description": "Update product",
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "employee_id": {
+                                    "product_id": {
                                         "type": "string"
                                     },
-                                    "name": {
+                                    "category_id": {
                                         "type": "string"
                                     },
-                                    "email": {
+                                    "product_name": {
                                         "type": "string"
                                     },
-                                    "phone": {
-                                        "type": "string"
-                                    },
-                                    "position_id": {
+                                    "price": {
                                         "type": "integer"
                                     },
-                                    "address": {
+                                    "stock": {
+                                        "type": "integer"
+                                    },
+                                    "created_at": {
                                         "type": "string"
                                     },
                                     "updated_at": {
@@ -426,23 +412,20 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "employee_id": {
+                                                "product_id": {
                                                     "type": "string"
                                                 },
-                                                "name": {
+                                                "category_name": {
                                                     "type": "string"
                                                 },
-                                                "email": {
+                                                "product_name": {
                                                     "type": "string"
                                                 },
-                                                "phone": {
-                                                    "type": "string"
+                                                "price": {
+                                                    "type": "integer"
                                                 },
-                                                "position": {
-                                                    "type": "string"
-                                                },
-                                                "address": {
-                                                    "type": "string"
+                                                "stock": {
+                                                    "type": "integer"
                                                 },
                                                 "created_at": {
                                                     "type": "string"
@@ -461,9 +444,9 @@
                 }
             },
             "delete": {
-                "tags": ["Employees"],
-                "summary": "Delete employee",
-                "description": "Delete employee",
+                "tags": ["Products"],
+                "summary": "Delete product",
+                "description": "Delete product",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -477,7 +460,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success delete employee",
+                        "description": "Success delete product",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -488,6 +471,50 @@
                                         },
                                         "errors": {
                                             "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/products/nearly_out_of_stock_products": {
+            "get": {
+                "tags": ["Products"],
+                "summary": "Get lowest stock product",
+                "description": "Get lowest stock product",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get nearly out of stock products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "product_id": {
+                                                        "type": "string"
+                                                    },
+                                                    "product_name": {
+                                                        "type": "string"
+                                                    },
+                                                    "stock": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }

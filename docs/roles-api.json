@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.3",
     "info": {
-        "title": "Employees",
-        "description": "Employees",
+        "title": "Roles",
+        "description": "Roles",
         "version": "1.0.0"
     },
     "servers": [
@@ -11,11 +11,11 @@
         }
     ],
     "paths": {
-        "/api/employees": {
+        "/api/roles": {
             "get": {
-                "tags": ["Employees"],
-                "summary": "Get All Employees",
-                "description": "Get All Employees",
+                "tags": ["Roles"],
+                "summary": "Get All Roles",
+                "description": "Get All Roles",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -30,65 +30,17 @@
                         }
                     },
                     {
-                        "name": "Name",
+                        "name": "Role",
                         "in": "query",
-                        "description": "Name",
+                        "description": "Role",
                         "schema": {
                             "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Position",
-                        "in": "query",
-                        "description": "Position",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Email",
-                        "in": "query",
-                        "description": "Email",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Phone",
-                        "in": "query",
-                        "description": "Phone",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Address",
-                        "in": "query",
-                        "description": "Address",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Page",
-                        "in": "query",
-                        "description": "Page",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "Size",
-                        "in": "query",
-                        "description": "Size",
-                        "schema": {
-                            "type": "integer"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success get all employees",
+                        "description": "Success get all roles",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -99,22 +51,10 @@
                                             "items": {
                                                 "type": "object",
                                                 "properties": {
-                                                    "employee_id": {
-                                                        "type": "string"
+                                                    "role_id": {
+                                                        "type": "integer"
                                                     },
-                                                    "name": {
-                                                        "type": "string"
-                                                    },
-                                                    "email": {
-                                                        "type": "string"
-                                                    },
-                                                    "phone": {
-                                                        "type": "string"
-                                                    },
-                                                    "position": {
-                                                        "type": "string"
-                                                    },
-                                                    "address": {
+                                                    "role_name": {
                                                         "type": "string"
                                                     },
                                                     "created_at": {
@@ -128,17 +68,6 @@
                                         },
                                         "errors": {
                                             "type": "object"
-                                        },
-                                        "meta": {
-                                            "type": "object",
-                                            "properties": {
-                                                "page": {
-                                                    "type": "integer"
-                                                },
-                                                "size": {
-                                                    "type": "integer"
-                                                }
-                                            }
                                         }
                                     }
                                 }
@@ -148,9 +77,9 @@
                 }
             },
             "post": {
-                "tags": ["Employees"],
-                "summary": "Create new employee",
-                "description": "Create New employee",
+                "tags": ["Roles"],
+                "summary": "Create new role",
+                "description": "Create new role",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -162,14 +91,10 @@
                         "application/json": {
                             "examples": {
                                 "budi": {
-                                    "description": "Register employee Budi",
+                                    "description": "Register Administrator role",
                                     "value": {
-                                        "employee_id": "EMP1",
-                                        "name": "Budi Gunawan",
-                                        "position_id": 1,
-                                        "phone_number": "08123456789",
-                                        "address": "Jl. Raya No. 1",
-                                        "email": "budi@gg.com",
+                                        "role_id": 1,
+                                        "role_name": "Administrator",
                                         "created_at": "2021-05-05T07:00:00.000Z",
                                         "updated_at": "2021-05-05T07:00:00.000Z"
                                     }
@@ -177,32 +102,17 @@
                             },
                             "schema": {
                                 "required": [
-                                    "name",
-                                    "position_id",
-                                    "phone_number",
-                                    "address",
-                                    "email",
+                                    "role_id",
+                                    "role_name",
                                     "created_at",
                                     "updated_at"
                                 ],
                                 "type": "object",
                                 "properties": {
-                                    "employee_id": {
-                                        "type": "string"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "position_id": {
+                                    "role_id": {
                                         "type": "integer"
                                     },
-                                    "phone_number": {
-                                        "type": "string"
-                                    },
-                                    "address": {
-                                        "type": "string"
-                                    },
-                                    "email": {
+                                    "role_name": {
                                         "type": "string"
                                     },
                                     "created_at": {
@@ -218,20 +128,16 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Success register employee",
+                        "description": "Success register user",
                         "content": {
                             "application/json": {
                                 "examples": {
                                     "success": {
-                                        "description": "Success register employee",
+                                        "description": "Success register user",
                                         "value": {
                                             "data": {
-                                                "employee_id": "EMP1",
-                                                "name": "Budi Gunawan",
-                                                "email": "budi@gg.com",
-                                                "phone": "08123456789",
-                                                "position": "Manager",
-                                                "address": "Jl. Raya No. 1",
+                                                "role_id": 1,
+                                                "role_name": "Administrator",
                                                 "created_at": "2021-05-05T07:00:00.000Z",
                                                 "updated_at": "2021-05-05T07:00:00.000Z"
                                             }
@@ -244,22 +150,10 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "employee_id": {
-                                                    "type": "string"
+                                                "role_id": {
+                                                    "type": "integer"
                                                 },
-                                                "name": {
-                                                    "type": "string"
-                                                },
-                                                "email": {
-                                                    "type": "string"
-                                                },
-                                                "phone": {
-                                                    "type": "string"
-                                                },
-                                                "position": {
-                                                    "type": "string"
-                                                },
-                                                "address": {
+                                                "role_name": {
                                                     "type": "string"
                                                 },
                                                 "created_at": {
@@ -287,12 +181,11 @@
                                         "description": "Validation Error",
                                         "value": {
                                             "errors": {
-                                                "name": [
-                                                    "The name field is required.",
-                                                    "The name must be a string."
+                                                "role_id": [
+                                                    "The role id field is required."
                                                 ],
-                                                "email": [
-                                                    "The email field is required."
+                                                "role_name": [
+                                                    "The role name field is required."
                                                 ]
                                             }
                                         }
@@ -304,11 +197,11 @@
                 }
             }
         },
-        "/api/employees/{id}": {
+        "/api/roles/{id}": {
             "get": {
-                "tags": ["Employees"],
-                "summary": "Get employee",
-                "description": "Get employee",
+                "tags": ["Roles"],
+                "summary": "Get role",
+                "description": "Get role",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -322,7 +215,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success get employee",
+                        "description": "Success get role",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -332,22 +225,10 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "employee_id": {
-                                                    "type": "string"
+                                                "role_id": {
+                                                    "type": "integer"
                                                 },
-                                                "name": {
-                                                    "type": "string"
-                                                },
-                                                "email": {
-                                                    "type": "string"
-                                                },
-                                                "phone": {
-                                                    "type": "string"
-                                                },
-                                                "position": {
-                                                    "type": "string"
-                                                },
-                                                "address": {
+                                                "role_name": {
                                                     "type": "string"
                                                 },
                                                 "created_at": {
@@ -358,7 +239,9 @@
                                                 }
                                             }
                                         },
-                                        "errors": {}
+                                        "errors": {
+                                            "type": "object"
+                                        }
                                     }
                                 }
                             }
@@ -367,9 +250,9 @@
                 }
             },
             "put": {
-                "tags": ["Employees"],
-                "summary": "Update employee",
-                "description": "Update employee",
+                "tags": ["Roles"],
+                "summary": "Update role",
+                "description": "Update role",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -382,28 +265,24 @@
                     }
                 ],
                 "requestBody": {
-                    "description": "Update employee",
+                    "description": "Update role name",
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "object",
+                                "required": [
+                                    "role_id",
+                                    "role_name",
+                                    "updated_at"
+                                ],
                                 "properties": {
-                                    "employee_id": {
-                                        "type": "string"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "email": {
-                                        "type": "string"
-                                    },
-                                    "phone": {
-                                        "type": "string"
-                                    },
-                                    "position_id": {
+                                    "role_id": {
                                         "type": "integer"
                                     },
-                                    "address": {
+                                    "role_name": {
+                                        "type": "string"
+                                    },
+                                    "created_at": {
                                         "type": "string"
                                     },
                                     "updated_at": {
@@ -416,32 +295,19 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Success edit employee",
+                        "description": "Success update role name",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
-                                    "required": ["data"],
                                     "properties": {
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "employee_id": {
-                                                    "type": "string"
+                                                "role_id": {
+                                                    "type": "integer"
                                                 },
-                                                "name": {
-                                                    "type": "string"
-                                                },
-                                                "email": {
-                                                    "type": "string"
-                                                },
-                                                "phone": {
-                                                    "type": "string"
-                                                },
-                                                "position": {
-                                                    "type": "string"
-                                                },
-                                                "address": {
+                                                "role_name": {
                                                     "type": "string"
                                                 },
                                                 "created_at": {
@@ -452,7 +318,9 @@
                                                 }
                                             }
                                         },
-                                        "errors": {}
+                                        "errors": {
+                                            "type": "object"
+                                        }
                                     }
                                 }
                             }
@@ -461,9 +329,9 @@
                 }
             },
             "delete": {
-                "tags": ["Employees"],
-                "summary": "Delete employee",
-                "description": "Delete employee",
+                "tags": ["Roles"],
+                "summary": "Delete role",
+                "description": "Delete role",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -477,7 +345,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success delete employee",
+                        "description": "Success delete role",
                         "content": {
                             "application/json": {
                                 "schema": {

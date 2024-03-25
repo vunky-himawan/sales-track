@@ -3,7 +3,7 @@
 title ERD
 
 entity Roles {
-    *role_id : VARCHAR(50)
+    *role_id : INTEGER
     --
     *role_name : VARCHAR(50)
     + created_at : DATETIME
@@ -34,9 +34,10 @@ entity Employees {
 }
 
 entity Positions {
-    + position_id : VARCHAR(50)
+    + position_id : INTEGER
     --
     + position_name : VARCHAR(50)
+    + position_code : VARCHAR(10)
     + created_at : DATETIME
     + updated_at : DATETIME
 }
@@ -76,9 +77,10 @@ entity Products {
 }
 
 entity Categories {
-    + category_id : VARCHAR(50)
+    + category_id : INTEGER
     --
     + category_name : VARCHAR(50)
+    + category_code : VARCHAR(10)
     + created_at : DATETIME
     + updated_at : DATETIME
 }
@@ -87,7 +89,7 @@ Roles ||-l-|{Users
 Users ||--||Employees
 Employees}|-l-||Positions
 Employees ||-r-|{Sales
-Products ||-l-|{Categories
+Products||-l-|{Categories
 Sales ||--|{SalesDetails
 SalesDetails}|-l-||Products
 

@@ -1,0 +1,806 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Sales",
+        "description": "Sales",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000"
+        }
+    ],
+    "paths": {
+        "/api/sales": {
+            "get": {
+                "tags": ["Sales"],
+                "summary": "Get all Positions",
+                "description": "Get all Positions",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "Order By",
+                        "in": "query",
+                        "description": "Order By",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Date Filter",
+                        "in": "query",
+                        "description": "Date Filter",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Employee Name",
+                        "in": "query",
+                        "description": "Employee Name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Customer Name",
+                        "in": "query",
+                        "description": "Customer Name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Page",
+                        "in": "query",
+                        "description": "Page",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "Size",
+                        "in": "query",
+                        "description": "Size",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get all sales",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "sales_id": {
+                                                        "type": "string"
+                                                    },
+                                                    "employee_name": {
+                                                        "type": "string"
+                                                    },
+                                                    "customer_name": {
+                                                        "type": "string"
+                                                    },
+                                                    "product_total": {
+                                                        "type": "integer"
+                                                    },
+                                                    "total_price": {
+                                                        "type": "integer"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Sales"],
+                "summary": "Create new sales",
+                "description": "Create new sales",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "examples": {
+                                "budi": {
+                                    "description": "Create new sales report",
+                                    "value": {
+                                        "sales_id": 1,
+                                        "employee_id": "EMP1",
+                                        "customer_name": "budi",
+                                        "product_total": 0,
+                                        "total_price": 0,
+                                        "created_at": "2021-05-05T07:00:00.000Z",
+                                        "updated_at": "2021-05-05T07:00:00.000Z"
+                                    }
+                                }
+                            },
+                            "schema": {
+                                "required": [
+                                    "sales_id",
+                                    "employee_id",
+                                    "customer_name",
+                                    "product_total",
+                                    "total_price",
+                                    "created_at",
+                                    "updated_at"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "sales_id": {
+                                        "type": "integer"
+                                    },
+                                    "employee_id": {
+                                        "type": "string"
+                                    },
+                                    "customer_name": {
+                                        "type": "string"
+                                    },
+                                    "product_total": {
+                                        "type": "integer"
+                                    },
+                                    "total_price": {
+                                        "type": "integer"
+                                    },
+                                    "created_at": {
+                                        "type": "string"
+                                    },
+                                    "updated_at": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success create new sales report",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "success": {
+                                        "description": "Success create new sales report",
+                                        "value": {
+                                            "data": {
+                                                "sales_id": 1,
+                                                "employee_name": "budi",
+                                                "customer_name": "budi",
+                                                "product_total": 0,
+                                                "total_price": 0,
+                                                "created_at": "2021-05-05T07:00:00.000Z",
+                                                "updated_at": "2021-05-05T07:00:00.000Z"
+                                            }
+                                        }
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "sales_id": {
+                                                    "type": "integer"
+                                                },
+                                                "employee_name": {
+                                                    "type": "string"
+                                                },
+                                                "customer_name": {
+                                                    "type": "string"
+                                                },
+                                                "product_total": {
+                                                    "type": "integer"
+                                                },
+                                                "total_price": {
+                                                    "type": "integer"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "validation error": {
+                                        "description": "Validation Error",
+                                        "value": {
+                                            "errors": {
+                                                "sales_id": [
+                                                    "The role id field is required."
+                                                ],
+                                                "employee_id": [
+                                                    "The role id field is required."
+                                                ],
+                                                "customer_name": [
+                                                    "The role id field is required."
+                                                ],
+                                                "product_total": [
+                                                    "The role id field is required."
+                                                ],
+                                                "total_price": [
+                                                    "The role id field is required."
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/sales/{id}": {
+            "get": {
+                "tags": ["Sales"],
+                "summary": "Get sales",
+                "description": "Get sales",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get sales",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "required": ["data"],
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "sales_id": {
+                                                    "type": "integer"
+                                                },
+                                                "employee_name": {
+                                                    "type": "string"
+                                                },
+                                                "customer_name": {
+                                                    "type": "string"
+                                                },
+                                                "product_total": {
+                                                    "type": "integer"
+                                                },
+                                                "total_price": {
+                                                    "type": "integer"
+                                                },
+                                                "details": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "product_id": {
+                                                                "type": "string"
+                                                            },
+                                                            "product_name": {
+                                                                "type": "string"
+                                                            },
+                                                            "price": {
+                                                                "type": "integer"
+                                                            },
+                                                            "quantity": {
+                                                                "type": "integer"
+                                                            },
+                                                            "subtotal": {
+                                                                "type": "integer"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Sales"],
+                "summary": "Update position",
+                "description": "Update position",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update position name",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "sales_id",
+                                    "employee_id",
+                                    "customer_name",
+                                    "product_total",
+                                    "total_price",
+                                    "created_at",
+                                    "updated_at"
+                                ],
+                                "properties": {
+                                    "sales_id": {
+                                        "type": "integer"
+                                    },
+                                    "employee_id": {
+                                        "type": "string"
+                                    },
+                                    "customer_name": {
+                                        "type": "string"
+                                    },
+                                    "product_total": {
+                                        "type": "integer"
+                                    },
+                                    "total_price": {
+                                        "type": "integer"
+                                    },
+                                    "created_at": {
+                                        "type": "string"
+                                    },
+                                    "updated_at": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success update sales",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "sales_id": {
+                                                    "type": "integer"
+                                                },
+                                                "employee_name": {
+                                                    "type": "string"
+                                                },
+                                                "customer_name": {
+                                                    "type": "string"
+                                                },
+                                                "product_total": {
+                                                    "type": "integer"
+                                                },
+                                                "total_price": {
+                                                    "type": "integer"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Sales"],
+                "summary": "Delete sales",
+                "description": "Delete sales",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success delete sales",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/sales/revenue/monthly/{year}": {
+            "get": {
+                "tags": ["Sales"],
+                "summary": "Get monthly sales",
+                "description": "Get monthly sales",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "year",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get monthly sales",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "month": {
+                                                        "type": "string"
+                                                    },
+                                                    "total_price": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/sales/revenue/yearly/start/{start_year}/end/{end_year}": {
+            "get": {
+                "tags": ["Sales"],
+                "summary": "Get yearly sales",
+                "description": "Get yearly sales",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "start_year",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "end_year",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get yearly sales",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "year": {
+                                                        "type": "string"
+                                                    },
+                                                    "total_price": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/sales/total_sales/monthly/{year}": {
+            "get": {
+                "tags": ["Sales"],
+                "summary": "Get total sales",
+                "description": "Get total sales",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "year",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get total sales",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "month": {
+                                                        "type": "string"
+                                                    },
+                                                    "total_sales": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/sales/total_sales/yearly/start/{start_year}/end/{end_year}": {
+            "get": {
+                "tags": ["Sales"],
+                "summary": "Get total sales",
+                "description": "Get total sales",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "start_year",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "end_year",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get total sales",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "year": {
+                                                        "type": "string"
+                                                    },
+                                                    "total_sales": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/sales/more_purchased_product/monthly/{year}": {
+            "get": {
+                "tags": ["Sales"],
+                "summary": "Get more purchased product",
+                "description": "Get more purchased product",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "year",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get more purchased product",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "month": {
+                                                        "type": "string"
+                                                    },
+                                                    "product": {
+                                                        "type": "string"
+                                                    },
+                                                    "total_purchased": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/sales/more_purchased_product/yearly/start/{start_year}/end/{end_year}": {
+            "get": {
+                "tags": ["Sales"],
+                "summary": "Get more purchased product",
+                "description": "Get more purchased product",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "start_year",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "end_year",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get more purchased product",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "year": {
+                                                        "type": "string"
+                                                    },
+                                                    "product": {
+                                                        "type": "string"
+                                                    },
+                                                    "total_purchased": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
